@@ -1,0 +1,7 @@
+dlib
+face_recognition
+opencv-python 
+cvzone
+requests
+face_recognition_models
+git+https://github.com/ageitgey/face_recognition_models
