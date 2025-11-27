@@ -16,7 +16,10 @@ import cv2
 
 
 SUPABASE_URL = os.environ.get('__supabase_url') if os.environ.get('__supabase_url') else 'https://sfruzhtdqyybjxqohoxf.supabase.co'
-SUPABASE_KEY = os.environ.get('__supabase_key') if os.environ.get('__supabase_key') else 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNmcnV6aHRkcXl5Ymp4cW9ob3hmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODIxMTE4NiwiZXhwIjoyMDczNzg3MTg2fQ.e00_p4dp9hQj-E89BacqZNEbjkqw57hQFGsS50sa82E'
+SUPABASE_KEY = os.environ.get("__supabase_key")
+if not SUPABASE_KEY:
+    raise RuntimeError("❌ Missing SUPABASE_KEY environment variable. Set it before running the server.")
+
 # ---------------------------------------------------------------------------------------------------------
 ENCODE_FILE = os.path.join(os.path.dirname(__file__), "EncodeFile.npz")
 
@@ -328,3 +331,4 @@ def get_student_details(student_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
