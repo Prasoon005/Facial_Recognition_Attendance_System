@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Student Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+        :root{
+            --bg1:#1f2833;
+            --bg2:#0b0c0f;
+            --accent1:#66fcf1;
+            --accent2:#45a29e;
+            --muted:#c5c6c7;
+            --card:#1f2833;
+            --warning-bg:#2f1c20;
+            --warning-text:#ff7a91;
+            --warning-border:#4d1e20;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            min-height:100vh;
+            font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+            background: linear-gradient(135deg,var(--bg1),var(--bg2));
+            color:var(--muted);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:24px;
+        }
+        
+        /* NEW: Main container for two-column layout */
+        .main-layout{
+            width:100%;
+            max-width:1100px; /* Increased max width for side-by-side view */
+            background:#0f1011;
+            border-radius:16px;
+            padding:32px;
+            box-shadow: 0 16px 50px rgba(0,0,0,0.6);
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap; /* Responsive stacking on small screens */
+        }
+
+        .left-panel {
+            flex: 1.5; /* Rules panel takes more space */
+            min-width: 300px;
+        }
+
+        .right-panel {
+            flex: 1; /* Login card is narrower */
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Styling the actual login card content */
+        .login-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .title{
+            margin:0 0 8px;
+            color: var(--accent1);
+            letter-spacing:1px;
+            font-size:28px;
+        }
+        .subtitle{
+            margin:0 0 25px;
+            color:var(--muted);
+            opacity:0.95;
+        }
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
+        input[type="text"]{
+            padding:12px;
+            border:1px solid rgba(102,252,241,0.1);
+            border-radius:8px;
+            background:var(--card);
+            color:white;
+            font-size:16px;
+            width:100%;
+            transition:border-color 0.3s;
+        }
+        input[type="text"]:focus{
+            outline:none;
+            border-color:var(--accent1);
+            box-shadow:0 0 8px rgba(102,252,241,0.2);
+        }
+        button{
+            padding:12px 28px;
+            background: linear-gradient(45deg,var(--accent2),var(--accent1));
+            color:#071019;
+            border:none;
+            border-radius:999px;
+            font-weight:700;
+            cursor:pointer;
+            box-shadow:0 8px 22px rgba(102,252,241,0.08);
+            transition:opacity 0.3s;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .status{
+            margin-top:20px;
+            font-size:14px;
+            color:var(--warning-text);
+            min-height:20px;
+        }
+
+        /* Rules Panel Styling for Left Column */
+        .rules-panel {
+            margin-top: 0; /* Removed margin-top */
+            padding: 25px; /* Slightly larger padding */
+            background: #141c24; 
+            border: 1px solid rgba(102,252,241,0.08);
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            height: 100%; /* Ensure it fills the height of the container */
+            display: flex;
+            flex-direction: column;
+        }
+        .rules-panel h4 {
+            margin: 0 0 12px;
+            color: var(--accent1);
+            font-size: 1.3em;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid rgba(102,252,241,0.1);
+            padding-bottom: 5px;
+        }
+        .rules-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly; /* Evenly space the list items */
+        }
+        .rules-panel li {
+            margin-bottom: 12px;
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: var(--muted);
+        }
+        .rules-panel li strong {
+            color: var(--accent2);
+            font-weight: 700;
+        }
+        /* END NEW CSS for Rules Panel */
+    </style>
+</head>
+<body>
+    <div class="main-layout">
+        
+        <!-- LEFT PANEL: Attendance Rules -->
+        <div class="left-panel">
+            <div class="rules-panel">
+                <h4>Attendance Rules & Integrity Check (MANDATORY)</h4>
+                <ul>
+                    <li>
+                        <strong>1. Clear Visibility & Environment:</strong> Ensure your entire face is clearly visible within the frame. Avoid strong backlighting, shadows, or low-light conditions.
+                    </li>
+                    <li>
+                        <strong>2. No Face Obstructions:</strong> Remove any items like masks, glasses (if they obstruct critical facial features), or hats during the verification process. Your full facial structure must be visible.
+                    </li>
+                    <li>
+                        <strong>3. Mandatory Liveness Check:</strong> You must immediately follow the on-screen instructions (e.g., blink, turn your head, nod) to complete the liveness detection and prove you are a live person.
+                    </li>
+                    <li>
+                        <strong>4. Zero Tolerance for Spoofing:</strong> The use of photos, videos, 3D models, or any form of digital manipulation to mark attendance is **strictly prohibited**. The system uses advanced AI anti-spoofing technology.
+                    </li>
+                    <li>
+                        <strong>5. Critical Disciplinary Charges:</strong> Any confirmed attempt to spoof or fraudulently mark attendance will result in **immediate and severe disciplinary action**, including a permanent failing grade for the course and critical misconduct charges.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- END LEFT PANEL -->
+
+
+        <!-- RIGHT PANEL: Login Form -->
+        <div class="right-panel">
+            <div class="login-card">
+                <h1 class="title">Student Attendance Login</h1>
+                <p class="subtitle">Please enter your Student ID to access the facial verification portal.</p>
+
+                <form id="loginForm">
+                    <input type="text" id="studentId" placeholder="Enter your Student ID (e.g., S101)" required />
+                    <button type="submit">
+                        Login and Proceed
+                    </button>
+                </form>
+
+                <p id="loginStatus" class="status"></p>
+            </div>
+        </div>
+        <!-- END RIGHT PANEL -->
+
+    </div>
+
+    <script>
+        // NOTE: This backend endpoint is for the local Python Flask app (app.py)
+        const BACKEND_ENDPOINT = "http://127.0.0.1:5000"; 
+        const loginForm = document.getElementById("loginForm");
+        const studentIdInput = document.getElementById("studentId");
+        const loginStatus = document.getElementById("loginStatus");
+
+        // Check if student ID exists in localStorage (already logged in)
+        if (localStorage.getItem("student_id")) {
+             // Redirect immediately if already logged in
+             window.location.href = "/attendance";
+             loginStatus.innerText = "Already logged in. Redirecting...";
+        }
+
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const studentId = studentIdInput.value.trim();
+            if (!studentId) {
+                loginStatus.innerText = "Please enter a student ID.";
+                return;
+            }
+
+            loginStatus.innerText = "Verifying...";
+            const loginBtn = loginForm.querySelector("button");
+            loginBtn.disabled = true;
+
+            try {
+                const res = await fetch(`${BACKEND_ENDPOINT}/api/login`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ student_id: studentId })
+                });
+
+                const data = await res.json();
+
+                if (data.status === "success") {
+                    // Store student ID in local storage on successful login
+                    localStorage.setItem("student_id", studentId);
+                    loginStatus.innerText = "Success! Redirecting...";
+                    window.location.href = "/attendance";
+                } else {
+                    loginStatus.innerText = "Error: " + data.message;
+                }
+            } catch (err) {
+                console.error("Login error:", err);
+                loginStatus.innerText = "Network error or server not reachable. Ensure the Python server (app.py) is running.";
+            } finally {
+                loginBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
